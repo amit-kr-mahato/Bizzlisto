@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\socilaitecontroller;
-use App\Http\Controllers\Forgetpassword;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,16 +48,8 @@ Route::get('index/google-callback', [socilaitecontroller::class, 'Googleauthenti
 Route::get('sigin', [FrontendController::class, 'Sigin'])->name('sigin');
 Route::post('sigincheck', [FrontendController::class, 'SigninCheck'])->name('signincheck');
 
-// Route::get('admin/dashboard', [FrontendController::class, 'Dashboard'])->name('dashboard');
-// Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
+
 
 Auth::routes(['verify' => true]);
-Route::middleware(['auth', 'verified'])->get('dashboard', function () {
-    return view('businessdashboard.dashboard');
-})->name('dashboard');
 
-//forgetpassword
-Route::get('password/forget', [Forgetpassword::class, 'forgetpassword'])->name('password.forget');
-Route::post('password/forget', [Forgetpassword::class, 'forgetpasswordform'])->name('password.forget.form');
-Route::get('password/forget/{token}', [Forgetpassword::class, 'showlinkform'])->name('password.forget.link');
-Route::post('password/email/submit', [Forgetpassword::class, 'resetpassword'])->name('password.forget.link.submit');
+
